@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,42 +11,44 @@ import javax.servlet.http.HttpSession;
 import logica.Controladora;
 import logica.Usuario;
 
-@WebServlet(name = "SvUsuarios", urlPatterns = {"/SvUsuarios"})
-public class SvUsuarios extends HttpServlet {
-
-    Controladora control = new Controladora();
+@WebServlet(name = "SvEditUsuarios", urlPatterns = {"/SvEditUsuarios"})
+public class SvEditUsuarios extends HttpServlet {
     
+    Controladora control = new Controladora();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         
-        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-        
-        listaUsuarios = control.getUsuarios();
+        Usuario usu = control.traerUsuario(id);
         
         HttpSession misession = request.getSession();
-        misession.setAttribute( "listaUsuarios", listaUsuarios);
-        //System.out.println("Usuario: " + listaUsuarios.get(0));
-        response.sendRedirect("verUsuarios.jsp");
+        misession.setAttribute("usuEditar", usu);
+        
+        response.sendRedirect("editarUsuarios.jsp");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombreUsuario = request.getParameter("nombreusu");
-        String contra = request.getParameter("contrasenia");
+        String nombreUsu = request.getParameter("nombreusu");
+        String contrasenia = request.getParameter("contrasenia");
         String rol = request.getParameter("rol");
-
-        control.crearUsuario(nombreUsuario, contra, rol);
-
-        response.sendRedirect("index.jsp");
+        
+        Usuario usu = (Usuario) request.getSession().getAttribute("usuEditar");
+        
+        usu.setNombreUsuario(nombreUsu);
+        usu.setContrasenia(contrasenia);
+        usu.setRol(rol);
+        
+        control.editarUsuario(usu);
+        response.sendRedirect("SvUsuarios");
     }
-
     @Override
     public String getServletInfo() {
         return "Short description";

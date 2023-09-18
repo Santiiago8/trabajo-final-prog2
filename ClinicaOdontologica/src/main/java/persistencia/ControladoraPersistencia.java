@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import logica.Odontologo;
+import logica.Paciente;
+import logica.Turno;
 import logica.Usuario;
 import persistencia.exceptions.NonexistentEntityException;
 
@@ -30,6 +33,10 @@ public class ControladoraPersistencia {
     public List<Usuario> getUsuarios() {
         return usuJPA.findUsuarioEntities();
     }
+    
+    public List<Odontologo> getOdontologos() {
+        return odontoJPA.findOdontologoEntities();
+    }
 
     public void borrarUsuario(int id) {
         try {
@@ -50,5 +57,43 @@ public class ControladoraPersistencia {
             Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void crearOdontologo(Odontologo odo) {
+        odontoJPA.create(odo);
+    }
+
+    public void borrarOdontologo(int id) {
+        try {
+            odontoJPA.destroy(id);
+        }catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void crearPaciente(Paciente pac) {
+        pacJPA.create(pac);
+    }
+
+    public List<Paciente> getPacientes() {
+        return pacJPA.findPacienteEntities();
+
+    }
+
+    public void borrarPaciente(int id) {
+        try {
+            pacJPA.destroy(id);
+        }catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void crearTurno(Turno turno) {
+        turnJPA.create(turno);
+    }
+
+    public List<Turno> getTurnos() {
+        return turnJPA.findTurnoEntities();
+    }
+
     
 }

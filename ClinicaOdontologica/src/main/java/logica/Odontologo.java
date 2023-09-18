@@ -10,8 +10,6 @@ public class Odontologo extends Persona implements Serializable{
     
     //private int id_odontologo;
     private String especialidad;
-    @OneToMany(mappedBy="odonto")
-    private List<Turno> listaTurnos;
     @OneToOne
     private Usuario unUsuario;
     @OneToOne
@@ -21,10 +19,9 @@ public class Odontologo extends Persona implements Serializable{
     public Odontologo() {
     }
 
-    public Odontologo(String especialidad, List<Turno> listaTurnos, Usuario unUsuario, Horario unHorario, int id, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nac) {
-        super(id, dni, nombre, apellido, telefono, direccion, fecha_nac);
+    public Odontologo(String especialidad, Usuario unUsuario, Horario unHorario, int id, String dni, String nombre, String apellido, String telefono, String direccion) {
+        super(id, dni, nombre, apellido, telefono, direccion);
         this.especialidad = especialidad;
-        this.listaTurnos = listaTurnos;
         this.unUsuario = unUsuario;
         this.unHorario = unHorario;
     }
@@ -44,14 +41,6 @@ public class Odontologo extends Persona implements Serializable{
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
-    }
-
-    public List<Turno> getListaTurnos() {
-        return listaTurnos;
-    }
-
-    public void setListaTurnos(List<Turno> listaTurnos) {
-        this.listaTurnos = listaTurnos;
     }
 
     public Usuario getUnUsuario() {

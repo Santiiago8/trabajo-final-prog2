@@ -11,27 +11,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logica.Controladora;
-import logica.Usuario;
+import logica.Turno;
 
-@WebServlet(name = "SvUsuarios", urlPatterns = {"/SvUsuarios"})
-public class SvUsuarios extends HttpServlet {
+@WebServlet(name = "SvTurnos", urlPatterns = {"/SvTurnos"})
+public class SvTurnos extends HttpServlet {
 
     Controladora control = new Controladora();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Usuario> listaUsuarios = new ArrayList <Usuario>();
+        List<Turno> listaTurnos = new ArrayList <Turno>();
         
-        listaUsuarios = control.getUsuarios();
+        listaTurnos = control.getTurnos();
         
         HttpSession misession = request.getSession();
-        misession.setAttribute("listaUsuarios", listaUsuarios);
+        misession.setAttribute("listaTurnos", listaTurnos);
         
         response.sendRedirect("verUsuarios.jsp");
     }
@@ -39,12 +38,11 @@ public class SvUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nombreUsuario = request.getParameter("nombreusu");
-        String contra = request.getParameter("contrasenia");
-        String rol = request.getParameter("rol");
-
-        control.crearUsuario(nombreUsuario, contra, rol);
-
+        String fecha = request.getParameter("fecha");
+        String hora = request.getParameter("hora");
+        String tipoconsulta = request.getParameter("tipoconsulta");
+        
+        control.crearTurno(fecha, hora, tipoconsulta);
         response.sendRedirect("index.jsp");
     }
 

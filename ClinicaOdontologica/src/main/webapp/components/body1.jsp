@@ -1,6 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <body id="page-top">
 
+    <!-- Validacion Sesion -->
+    <% HttpSession misession = request.getSession(); 
+    String usuario = (String) request.getSession().getAttribute("usuario"); 
+    
+    
+    %>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -43,7 +49,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="">Ver Odontólogos</a>
+                        <a class="collapse-item" href="SvOdontologo">Ver Odontólogos</a>
                         <a class="collapse-item" href="altaOdontologo.jsp">Alta Odontólogos</a>
                     </div>
                 </div>
@@ -60,8 +66,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="">Ver Pacientes</a>
-                        <a class="collapse-item" href="">Alta Pacientes</a>
+                        <a class="collapse-item" href="SvPacientes">Ver Pacientes</a>
+                        <a class="collapse-item" href="altaPacientes.jsp">Alta Pacientes</a>
                     </div>
                 </div>
             </li>
@@ -77,6 +83,21 @@
                         <h6 class="collapse-header">Acciones:</h6>
                         <a class="collapse-item" href="SvUsuarios">Ver Usuarios</a>
                         <a class="collapse-item" href="altaUsuarios.jsp">Alta Usuarios</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapTurnos"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-solid fa-hospital-user"></i>
+                    <span>Turnos</span>
+                </a>
+                <div id="collapTurnos" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Acciones:</h6>
+                        <a class="collapse-item" href="">Ver Turnos</a>
+                        <a class="collapse-item" href="altaTurno.jsp">Dar Turno</a>
                     </div>
                 </div>
             </li>
@@ -103,13 +124,13 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=request.getSession().getAttribute("usuario")%></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                         <!--   <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -128,7 +149,7 @@
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
-                            </div>
+                            </div>-->
                         </li>
 
                     </ul>

@@ -8,25 +8,19 @@ public class Turno implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id_turno;
-    @Temporal(TemporalType.DATE)
-    private Date fecha_turno;
+    private String fecha_turno;
     private String hora_turno;
-    private String afeccion;
-    @ManyToOne
-    @JoinColumn(name="id_odonto")
-    private Odontologo odonto;
-    @ManyToOne
-    @JoinColumn(name="id_pacien")
-    private Paciente pacien;
+    private String Tipoconsulta;
+ 
     
     public Turno() {
     }
 
-    public Turno(int id_turno, Date fecha_turno, String hora_turno, String afeccion) {
+    public Turno(int id_turno, String fecha_turno, String hora_turno, String Tipoconsulta) {
         this.id_turno = id_turno;
         this.fecha_turno = fecha_turno;
         this.hora_turno = hora_turno;
-        this.afeccion = afeccion;
+        this.Tipoconsulta = Tipoconsulta;
         
         
     }
@@ -39,11 +33,11 @@ public class Turno implements Serializable {
         this.id_turno = id_turno;
     }
 
-    public Date getFecha_turno() {
+    public String getFecha_turno() {
         return fecha_turno;
     }
 
-    public void setFecha_turno(Date fecha_turno) {
+    public void setFecha_turno(String fecha_turno) {
         this.fecha_turno = fecha_turno;
     }
 
@@ -55,13 +49,12 @@ public class Turno implements Serializable {
         this.hora_turno = hora_turno;
     }
 
-    public String getAfeccion() {
-        return afeccion;
+    public String getTipoconsulta() {
+        return Tipoconsulta;
     }
 
-    public void setAfeccion(String afeccion) {
-        this.afeccion = afeccion;
-    }
-    
+    public void setTipoconsulta(String Tipoconsulta) {
+        this.Tipoconsulta = Tipoconsulta;
+    }    
     
 }

@@ -22,20 +22,17 @@ public class Persona implements Serializable {
     private String apellido;
     private String telefono;
     private String direccion;
-    @Temporal(TemporalType.DATE)
-    private Date fecha_nac;
 
     public Persona() {
     }
 
-    public Persona(int id, String dni, String nombre, String apellido, String telefono, String direccion, Date fecha_nac) {
+    public Persona(int id, String dni, String nombre, String apellido, String telefono, String direccion) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.fecha_nac = fecha_nac;
     }
 
     public int getId() {
@@ -86,13 +83,7 @@ public class Persona implements Serializable {
         this.direccion = direccion;
     }
 
-    public Date getFecha_nac() {
-        return fecha_nac;
-    }
-
-    public void setFecha_nac(Date fecha_nac) {
-        this.fecha_nac = fecha_nac;
-    }
+    
     
     
 }
